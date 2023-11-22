@@ -1,0 +1,210 @@
+import java.util.*;
+public class Main {
+    
+    // CLASS NODE DECLARATION 
+    class node{
+        int data;
+        node next;
+    }
+    
+    public node head=null;
+    
+    // INSERTING ELEMENT AT LAST
+    public void append(int x){
+        node a=new node();
+        a.data=x;
+        a.next=null;
+        if(head==null){
+            head=a;
+        }
+        else{
+            node p=head;
+            while(p.next!=null){
+                p=p.next;
+            }
+            p.next=a;
+        }
+    }
+    
+    // INSERTING ELEMENT AT FIRST
+    public void insert_beg(int x){
+        node a=new node();
+        a.data=x;
+        if(head==null){
+            head=a;
+            a.next=null;
+        }
+        else{
+            a.next=head;
+            head=a;
+            }
+        }
+        
+    // lENGTH OF LINKED LIST
+    public int length(){
+        int l=0;
+        node p=head;
+        while(p!=null){
+            l++;
+            p=p.next;
+        }
+        return l; 
+    }
+    
+    // INSERTING ELEMENT AT GIVEN POSITION
+    public void insert_pos(int x,int pos,int l){
+        if(l<pos){
+            System.out.println("Invalid position");
+        }
+        else{
+            node p1=head,p2=head;
+            node a =new node();
+            a.data=x;
+            int i=0;
+            while(i<pos){
+                p2=p1;
+                p1=p1.next;
+                i++;
+            }
+            a.next=p1;
+            p2.next=a;
+        }
+        }
+        
+        // DELETING ELEMENT AT LAST
+        public void del_last(){
+        node p=head,p1=head;
+        if(head==null){
+            System.out.println("No element to delete");
+        }
+        else{
+            while(p.next!=null){
+                p1=p;
+                p=p.next;
+            }
+            p1.next=null;
+        }
+        }
+        
+        // DELETING ELEMENT AT FIRST
+        public void del_beg(){
+        if(head==null){
+            System.out.println("No element to delete");
+        }
+        else{
+            node p=head;
+            head=p.next;
+            p.next=null;
+        }
+        }
+        
+        // DELETING ELEMENT AT GIVEN POSITION
+        public void del_pos(int pos,int l){
+            if(l<pos){
+            System.out.println("Invalid position");
+        }
+        else{
+            node p1=head,p2=head;
+            int i=0;
+            while(i<pos){
+                p2=p1;
+                p1=p1.next;
+                i++;
+            }
+            p2.next=p1.next;
+            p1.next=null;
+        }
+        }
+        
+        
+        // DISPLAYING ELEMENTS IN THE LIST
+        public void display(){
+            node p=head;
+            while(p!=null){
+                System.out.println(p.data);
+                p=p.next;
+            }
+         }
+    
+        public static void main(String args[]){
+            Main o=new Main();
+             Scanner s=new Scanner(System.in);
+            int t=0;
+            while(t==0){
+                int c;
+                System.out.println("Enter your choice : \n"+
+                               "1.Insert at last\n"+
+                               "2.Insert at first\n"+
+                               "3.Insert at given position\n"+
+                               "4.Delete at last\n"+
+                               "5.Delete at first\n"+
+                               "6.Delete at given position\n"+
+                               "7.Length\n"+
+                               "8.Display Elements\n");
+                c=s.nextInt();
+                switch(c){
+                    case 1:{
+                        System.out.println("Enter your value to insert at last :");
+                        int x=s.nextInt();
+                        o.append(x);
+                        System.out.println("Value Inserted !!");
+                        break;
+                    }
+                    
+                case 2:{
+                    System.out.println("Enter your value to insert at first :");
+                      int x=s.nextInt();
+                      o.insert_beg(x);
+                      System.out.println("Value Inserted !!");
+                      break;
+                    }
+                    
+                case 3:{
+                    System.out.println("Enter your value and position to insert :");
+                      int x=s.nextInt();
+                      int pos=s.nextInt();
+                      int l=o.length();
+                      o.insert_pos(x,pos,l);
+                      System.out.println("Value Inserted !!");
+                      break;
+                    }
+                    
+                case 4:{
+                    o.del_last();
+                System.out.println("Last value deleted !!");
+                      break;
+                }
+                
+                case 5:{
+                    o.del_beg();
+                    System.out.println("First value deleted !!");
+                      break;
+                }
+                
+                case 6:{
+                    System.out.println("Enter your position to delete :");
+                    int pos=s.nextInt();
+                      int l=o.length();
+                    o.del_pos(pos,l);
+                    System.out.println("Value at "+pos+"deleted !!");
+                      break;
+                }
+                case 7:{
+                    System.out.println("Length is : "+o.length());
+                      break;
+                }
+                
+                case 8:{
+                    System.out.println("The element in Linked List are :");
+                    o.display();
+                      break;
+                }
+                
+                default:{
+                    System.out.println("Invalid choice !!");
+                    t=1;
+                }
+            }
+        }
+    }
+}
